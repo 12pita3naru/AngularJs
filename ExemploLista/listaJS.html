@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Lista de Compras</title>
+</head>
+<body>
+    <h1>Lista de compras</h1>
+    <div id="divLista">
+        <ul id=ulLista></ul>
+    </div>
+    <form>
+        <label>Adicionar: </label>
+        <input type="text" id="inElemento">
+        <input id="btnAdicionar" type="button" value="adicionar" alt="btnAdicionar">
+    </form>
+
+
+
+    <script>
+        $("document").ready(
+
+           $("#btnAdicionar").click(function(){
+
+               var novoElemento = $("#inElemento").val();
+
+               if(novoElemento ===""){
+                   alert("adicionar elemento no campo");
+               }
+               else{
+                    $("#ulLista").append('<li>'+novoElemento+'</li>');
+                    $("form").trigger("reset");
+               }
+           })
+        );
+
+    </script>
+</body>
+</html>

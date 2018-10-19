@@ -1,14 +1,44 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="tarefas">
 <head>
+    <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+
 </head>
 <body>
+
+<script>
+    angular.controller('addSkillsController', ['$scope', function ($scope) {
+
+        $scope.skills = [];
+
+        $scope.addSkill = function () {
+            $scope.skills.push({'title': $scope.newSkill, 'done': false})
+            $scope.newSkill = ''
+        };
+
+        $scope.deleteSkill = function (index) {
+            $scope.skills.splice(index, 1);
+        };
+    }])
+
+</script>
+
 <div>
-    <label>Name:</label>
-    <input type="text" ng-model="yourName" placeholder="Enter a name here">
-    <hr>
-    <h1>Hello {{yourName}}!</h1>
+    <body ng-controller="addSkillsController">
+    <h1>Add your Skills</h1>
+
+    <form name="skillsFrm" ng-submit="addSkill()">
+        <input type="text" name="newSkill" ng-model="newSkill" required/>
+        <button ng-disabled="skillsFrm.$invalid" ng-click="addSkill()">Add</button>
+    </form>
+
+    <ul>
+        <li ng-repeat="skill in skills" class="{'fadeOut' : skill.done}">
+            <span class="fa fa-close" ng-click="deleteSkill($index)"></span>
+            <span>{{skill.title}}</span>
+        </li>
+    </ul>
 </div>
 </body>
 </html>
